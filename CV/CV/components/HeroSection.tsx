@@ -81,7 +81,7 @@ export default function HeroSection() {
   }, [])
 
   return (
-    <section className="min-h-screen flex items-center justify-center px-4 py-20 bg-white">
+    <section className="min-h-screen flex items-center justify-center px-4 py-20 bg-[#eef0f4]">
       <div className="max-w-4xl w-full">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
