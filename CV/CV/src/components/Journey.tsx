@@ -54,21 +54,19 @@ export function Journey() {
   }
 
   return (
-    <section id="journey" className="py-24 px-6 bg-gray-50">
+    <section id="experience" className="py-14 px-6 bg-white">
       <div className="max-w-4xl mx-auto">
         <motion.div
           ref={ref}
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
+          className="mb-10"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
         >
-          <h2 className="text-4xl md:text-5xl font-light text-gray-900 mb-6">
-            Professional Journey
+          <p className="text-xs font-mono uppercase tracking-widest text-gray-400 mb-3">$ ls ./experience</p>
+          <h2 className="text-3xl font-light text-gray-900">
+            Experience
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            From creative storytelling to technical operations, each role has shaped my approach to problem-solving and innovation.
-          </p>
         </motion.div>
 
         <motion.div
@@ -124,16 +122,15 @@ export function Journey() {
         </motion.div>
 
         <motion.div
-          className="text-center mt-16"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, ease: 'easeOut', delay: 0.6 }}
+          className="mt-10"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, ease: 'easeOut', delay: 0.4 }}
         >
-          <h3 className="text-2xl font-light text-gray-900 mb-4">Education</h3>
-          <div className="bg-white p-6 rounded-lg shadow-sm max-w-md mx-auto">
-            <h4 className="text-lg font-semibold text-gray-900">Bachelor's in Film Production</h4>
-            <p className="text-gray-600">Full Sail University</p>
-            <p className="text-gray-500 text-sm">2016 - 2017</p>
+          <div className="bg-gray-50 p-5 rounded-lg border border-gray-100 max-w-sm">
+            <p className="text-xs font-mono text-gray-400 uppercase tracking-wider mb-1">Education</p>
+            <h4 className="text-base font-semibold text-gray-900">Bachelor's in Film Production</h4>
+            <p className="text-gray-500 text-sm">Full Sail University · 2016–2017</p>
           </div>
         </motion.div>
       </div>

@@ -85,21 +85,19 @@ export function Skills() {
   }
 
   return (
-    <section id="skills" className="py-24 px-6">
+    <section id="skills" className="py-14 px-6 bg-gray-50">
       <div className="max-w-6xl mx-auto">
         <motion.div
           ref={ref}
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
+          className="mb-10"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
         >
-          <h2 className="text-4xl md:text-5xl font-light text-gray-900 mb-6">
-            Skills & Expertise
+          <p className="text-xs font-mono uppercase tracking-widest text-gray-400 mb-3">$ cat skills.json</p>
+          <h2 className="text-3xl font-light text-gray-900">
+            Skills
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            A diverse skill set spanning creative storytelling, technical development, and operational excellence.
-          </p>
         </motion.div>
 
         <motion.div
@@ -148,18 +146,7 @@ export function Skills() {
           })}
         </motion.div>
 
-        <motion.div
-          className="text-center mt-16"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, ease: 'easeOut', delay: 0.8 }}
-        >
-          <p className="text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Currently expanding my technical expertise through hands-on Python development, 
-            Web3 exploration, and building automation tools that bridge the gap between 
-            creative problem-solving and technical implementation.
-          </p>
-        </motion.div>
+
       </div>
     </section>
   )

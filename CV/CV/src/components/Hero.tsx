@@ -8,104 +8,90 @@ export function Hero() {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.3,
-        delayChildren: 0.2,
-      },
+      transition: { staggerChildren: 0.2, delayChildren: 0.1 },
     },
   }
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, ease: 'easeOut' },
-    },
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
   }
 
-  const contactItems = [
-    { icon: Linkedin, text: 'linkedin.com/in/paolagisler', href: 'https://www.linkedin.com/in/paolagisler' },
-    { icon: Github, text: 'github.com/paolacodes1', href: 'https://github.com/paolacodes1' },
-  ]
-
   return (
-    <section id="hero" className="min-h-screen flex items-center justify-center px-6 py-20">
+    <section id="hero" className="min-h-screen flex items-center justify-center px-6 py-20 bg-white">
       <motion.div
-        className="max-w-4xl mx-auto text-center"
+        className="max-w-3xl mx-auto w-full"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
-        <motion.h1
-          className="text-5xl md:text-7xl font-light text-gray-900 mb-8 tracking-tight"
-          variants={itemVariants}
-        >
-          Paola G.
-        </motion.h1>
-
-        <motion.p
-          className="text-xl md:text-2xl text-gray-600 mb-12 leading-relaxed max-w-3xl mx-auto font-light"
-          variants={itemVariants}
-        >
-          Operations & AI Systems Builder. Film sets → BPO operations → building with Python, AI agents, and automation tools. I turn complex processes into systems that actually work.
-        </motion.p>
-
+        {/* Terminal block */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16"
+          className="bg-gray-950 rounded-lg p-6 mb-10 font-mono text-sm shadow-lg"
           variants={itemVariants}
         >
-          {contactItems.map((item, index) => {
-            const Icon = item.icon
-            const content = (
-              <div className="flex items-center justify-center md:justify-start space-x-3 p-4 rounded-lg hover:bg-gray-50 transition-colors duration-200">
-                <Icon className="w-5 h-5 text-gray-500" />
-                <span className="text-gray-700 text-sm">{item.text}</span>
-              </div>
-            )
-
-            return (
-              <motion.div
-                key={index}
-                whileHover={{ y: -2 }}
-                transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-              >
-                {item.href ? (
-                  <a
-                    href={item.href}
-                    target={item.href.startsWith('http') ? '_blank' : undefined}
-                    rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                    className="block"
-                  >
-                    {content}
-                  </a>
-                ) : (
-                  content
-                )}
-              </motion.div>
-            )
-          })}
+          <div className="flex items-center gap-2 mb-4">
+            <div className="w-3 h-3 rounded-full bg-red-500 opacity-80" />
+            <div className="w-3 h-3 rounded-full bg-yellow-500 opacity-80" />
+            <div className="w-3 h-3 rounded-full bg-green-500 opacity-80" />
+          </div>
+          <p className="text-green-400">$ whoami</p>
+          <p className="text-gray-300 mb-3">paola-gisler</p>
+          <p className="text-green-400">$ cat title.txt</p>
+          <p className="text-gray-300 mb-3">Operations &amp; AI Systems Builder</p>
+          <p className="text-green-400">$ echo $STACK</p>
+          <p className="text-gray-300 mb-3">Python · n8n · AI Agents · Process Automation · GitHub</p>
+          <p className="text-green-400">$ echo $PATH</p>
+          <p className="text-gray-400">film sets → BPO operations → building with AI<span className="animate-pulse">_</span></p>
         </motion.div>
 
-        <motion.div
-          variants={itemVariants}
-          className="flex justify-center"
-        >
-          <motion.a
-            href="#journey"
-            className="inline-flex items-center space-x-2 text-gray-500 hover:text-gray-700 transition-colors duration-200"
-            whileHover={{ y: -2 }}
-            transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+        {/* Name + tagline */}
+        <motion.div className="mb-8" variants={itemVariants}>
+          <h1 className="text-5xl md:text-6xl font-light text-gray-900 mb-4 tracking-tight">
+            Paola G.
+          </h1>
+          <p className="text-lg text-gray-500 leading-relaxed max-w-2xl">
+            I turn messy operational problems into clean automated systems.
+          </p>
+        </motion.div>
+
+        {/* Links */}
+        <motion.div className="flex items-center gap-6 mb-12" variants={itemVariants}>
+          <a
+            href="https://www.linkedin.com/in/paolagisler"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-900 transition-colors duration-200"
           >
-            <span className="text-sm font-medium">Explore my journey</span>
-            <motion.div
-              animate={{ y: [0, 5, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-            >
-              <ArrowDown className="w-4 h-4" />
-            </motion.div>
-          </motion.a>
+            <Linkedin className="w-4 h-4" />
+            <span>LinkedIn</span>
+          </a>
+          <a
+            href="https://github.com/paolacodes1"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-900 transition-colors duration-200"
+          >
+            <Github className="w-4 h-4" />
+            <span>GitHub</span>
+          </a>
         </motion.div>
+
+        {/* Scroll cue */}
+        <motion.a
+          href="#about"
+          className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-gray-600 transition-colors duration-200"
+          variants={itemVariants}
+          whileHover={{ y: -2 }}
+        >
+          <motion.div
+            animate={{ y: [0, 4, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+          >
+            <ArrowDown className="w-4 h-4" />
+          </motion.div>
+          <span>Explore</span>
+        </motion.a>
       </motion.div>
     </section>
   )

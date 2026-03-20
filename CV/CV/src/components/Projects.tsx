@@ -94,21 +94,19 @@ export function Projects() {
   }
 
   return (
-    <section id="projects" className="py-24 px-6 bg-gray-50">
+    <section id="projects" className="py-14 px-6 bg-white">
       <div className="max-w-6xl mx-auto">
         <motion.div
           ref={ref}
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
+          className="mb-10"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
         >
-          <h2 className="text-4xl md:text-5xl font-light text-gray-900 mb-6">
-            Featured Projects
+          <p className="text-xs font-mono uppercase tracking-widest text-gray-400 mb-3">$ ls ./projects</p>
+          <h2 className="text-3xl font-light text-gray-900">
+            Projects
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Building practical solutions that combine technical skills with real-world problem solving.
-          </p>
         </motion.div>
 
         <motion.div
@@ -195,22 +193,22 @@ export function Projects() {
         </motion.div>
 
         <motion.div
-          className="text-center mt-16"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, ease: 'easeOut', delay: 1 }}
+          className="mt-10"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, ease: 'easeOut', delay: 0.6 }}
         >
           <motion.a
             href="https://github.com/paolacodes1"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center space-x-2 px-6 py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors duration-200"
+            className="inline-flex items-center space-x-2 px-5 py-2.5 bg-gray-900 text-white text-sm rounded-lg hover:bg-gray-800 transition-colors duration-200"
             whileHover={{ y: -2 }}
             transition={{ type: 'spring', stiffness: 400, damping: 30 }}
           >
-            <Github className="w-5 h-5" />
-            <span>View All Projects on GitHub</span>
-            <ExternalLink className="w-4 h-4" />
+            <Github className="w-4 h-4" />
+            <span>View All on GitHub</span>
+            <ExternalLink className="w-3.5 h-3.5" />
           </motion.a>
         </motion.div>
       </div>

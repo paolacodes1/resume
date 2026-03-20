@@ -66,22 +66,20 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="py-24 px-6 bg-gray-50">
-      <div className="max-w-6xl mx-auto">
+    <section id="contact" className="py-14 px-6 bg-gray-50">
+      <div className="max-w-4xl mx-auto">
         <motion.div
           ref={ref}
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
+          className="mb-10"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
         >
-          <h2 className="text-4xl md:text-5xl font-light text-gray-900 mb-6">
+          <p className="text-xs font-mono uppercase tracking-widest text-gray-400 mb-3">$ ping paola</p>
+          <h2 className="text-3xl font-light text-gray-900 mb-2">
             Let's Connect
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Always interested in discussing new opportunities, collaborations, or just having 
-            a conversation about technology, creativity, and innovation.
-          </p>
+          <p className="text-gray-500 text-base">Open to opportunities, collaborations, and good conversations.</p>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
