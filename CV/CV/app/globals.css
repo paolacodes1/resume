@@ -6,24 +6,24 @@
 
 @layer base {
   :root {
-    --background: 220 27% 8%;
-    --foreground: 213 31% 93%;
-    --card: 220 27% 12%;
-    --card-foreground: 213 31% 93%;
-    --popover: 220 27% 12%;
-    --popover-foreground: 213 31% 93%;
+    --background: 0 0% 99%;
+    --foreground: 222 47% 11%;
+    --card: 0 0% 97%;
+    --card-foreground: 222 47% 11%;
+    --popover: 0 0% 97%;
+    --popover-foreground: 222 47% 11%;
     --primary: 262 83% 58%;
     --primary-foreground: 210 40% 98%;
-    --secondary: 220 27% 16%;
-    --secondary-foreground: 213 31% 93%;
-    --muted: 220 27% 16%;
-    --muted-foreground: 215 20.2% 70%;
-    --accent: 220 27% 16%;
-    --accent-foreground: 213 31% 93%;
+    --secondary: 220 14% 94%;
+    --secondary-foreground: 222 47% 11%;
+    --muted: 220 14% 94%;
+    --muted-foreground: 215 16% 44%;
+    --accent: 220 14% 94%;
+    --accent-foreground: 222 47% 11%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
-    --border: 220 27% 20%;
-    --input: 220 27% 20%;
+    --border: 220 14% 88%;
+    --input: 220 14% 88%;
     --ring: 262 83% 58%;
     --radius: 0.75rem;
   }
@@ -35,83 +35,114 @@
   }
   body {
     @apply bg-background text-foreground;
-    background: linear-gradient(135deg, #1a1d29 0%, #2d3748 100%);
-    color: #e2e8f0;
+    background: #f8f9fa;
+    color: #1a202c;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     line-height: 1.6;
   }
-  
-  /* Custom terminal-style scrollbar */
+
+  /* Custom scrollbar */
   ::-webkit-scrollbar {
     width: 8px;
   }
-  
+
   ::-webkit-scrollbar-track {
-    background: #1a1d29;
+    background: #f1f1f1;
   }
-  
+
   ::-webkit-scrollbar-thumb {
-    background: #4a5568;
+    background: #c4c4c4;
     border-radius: 6px;
   }
-  
+
   ::-webkit-scrollbar-thumb:hover {
-    background: #6b7280;
+    background: #a0a0a0;
   }
 }
 
 @layer components {
   .clean-card {
-    @apply bg-card/60 backdrop-blur-sm border border-border/40 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300;
+    @apply bg-white border border-border/60 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300;
   }
-  
+
+  /* Terminal keeps its dark look — explicit colors, not CSS variables */
   .terminal-window {
-    @apply bg-card/80 backdrop-blur-sm border border-border/60 rounded-xl overflow-hidden shadow-lg;
+    background: #1a1d29;
+    border: 1px solid #2d3748;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25), 0 4px 16px rgba(0, 0, 0, 0.15);
   }
-  
+
   .terminal-header {
-    @apply bg-muted/30 px-6 py-3 flex items-center space-x-3 border-b border-border/40;
+    background: #111827;
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    border-bottom: 1px solid #2d3748;
   }
-  
+
   .terminal-dot {
     @apply w-3 h-3 rounded-full;
   }
-  
+
   .terminal-content {
-    @apply p-6 font-mono text-sm;
+    padding: 1.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.875rem;
+    color: #e2e8f0;
+    min-height: 300px;
   }
-  
+
+  /* Terminal text colors stay light (on dark bg) */
+  .text-terminal-green { color: #68d391; }
+  .text-terminal-text { color: #cbd5e0; }
+  .text-terminal-yellow { color: #f6e05e; }
+
   .code-block {
-    @apply bg-card/80 backdrop-blur-sm border border-border/60 rounded-xl p-6 font-mono text-sm overflow-x-auto shadow-inner;
+    background: #1a1d29;
+    border: 1px solid #2d3748;
+    @apply rounded-xl p-6 font-mono text-sm overflow-x-auto shadow-inner;
+    color: #e2e8f0;
   }
-  
+
   .gradient-text {
-    @apply bg-gradient-to-r from-primary via-purple-400 to-indigo-400 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-primary via-purple-500 to-indigo-500 bg-clip-text text-transparent;
   }
-  
+
   .glow-border {
-    @apply border border-primary/30 shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all duration-300;
+    @apply border border-primary/30 shadow-lg shadow-primary/10 hover:shadow-primary/20 transition-all duration-300;
   }
-  
+
   .typing-cursor::after {
     content: '|';
     @apply text-primary animate-blink ml-1;
   }
-  
+
   .clean-section {
-    @apply py-20 px-4;
+    @apply py-16 px-4;
   }
-  
+
   .clean-heading {
     @apply text-4xl md:text-5xl font-bold mb-6 gradient-text;
   }
-  
+
   .clean-subheading {
     @apply text-xl md:text-2xl text-muted-foreground mb-8 leading-relaxed;
   }
 }
 
-/* Custom animations */
+/* Animations */
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.animate-blink {
+  animation: blink 1s step-start infinite;
+}
+
 @keyframes matrix-rain {
   0% { transform: translateY(-100vh); opacity: 0; }
   10% { opacity: 1; }
@@ -123,32 +154,11 @@
   animation: matrix-rain 3s linear infinite;
 }
 
-/* Syntax highlighting overrides for dark theme */
-.hljs {
-  background: transparent !important;
-  color: #c9d1d9 !important;
-}
-
-.hljs-keyword {
-  color: #ff7b72 !important;
-}
-
-.hljs-string {
-  color: #a5d6ff !important;
-}
-
-.hljs-number {
-  color: #79c0ff !important;
-}
-
-.hljs-comment {
-  color: #8b949e !important;
-}
-
-.hljs-function {
-  color: #d2a8ff !important;
-}
-
-.hljs-variable {
-  color: #ffa657 !important;
-}
+/* Syntax highlighting */
+.hljs { background: transparent !important; color: #c9d1d9 !important; }
+.hljs-keyword { color: #ff7b72 !important; }
+.hljs-string { color: #a5d6ff !important; }
+.hljs-number { color: #79c0ff !important; }
+.hljs-comment { color: #8b949e !important; }
+.hljs-function { color: #d2a8ff !important; }
+.hljs-variable { color: #ffa657 !important; }
