@@ -1,10 +1,10 @@
-import { Hero } from '@/components/Hero'
-import { Journey } from '@/components/Journey'
-import { Skills } from '@/components/Skills'
-import { Projects } from '@/components/Projects'
-import { Manifesto } from '@/components/Manifesto'
-import { Contact } from '@/components/Contact'
-import { Navigation } from '@/components/Navigation'
+import { Hero } from '@/src/components/Hero'
+import { Journey } from '@/src/components/Journey'
+import { Skills } from '@/src/components/Skills'
+import { Projects } from '@/src/components/Projects'
+import { Manifesto } from '@/src/components/Manifesto'
+import { Contact } from '@/src/components/Contact'
+import { Navigation } from '@/src/components/Navigation'
 
 export default function Home() {
   return (
