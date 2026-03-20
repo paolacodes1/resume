@@ -48,8 +48,7 @@ export function Hero() {
           className="text-xl md:text-2xl text-gray-600 mb-12 leading-relaxed max-w-3xl mx-auto font-light"
           variants={itemVariants}
         >
-          Creative background → film AD (6 years) → operations/BPO → learning Python/Web3. 
-          Problem solver, process optimizer, building at intersection of storytelling, crypto, and tech.
+          Operations & AI Systems Builder. Film sets → BPO operations → building with Python, AI agents, and automation tools. I turn complex processes into systems that actually work.
         </motion.p>
 
         <motion.div

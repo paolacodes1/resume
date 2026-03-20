@@ -8,19 +8,19 @@ const skillCategories = [
   {
     title: 'Programming & Development',
     icon: Code,
-    skills: ['Python', 'SQL', 'Web Development', 'Data Analysis', 'Automation Scripts'],
+    skills: ['Python', 'SQL', 'GitHub', 'Web Development', 'Data Analysis', 'Process Automation'],
     color: 'blue'
   },
   {
-    title: 'Web3 & Blockchain',
+    title: 'AI & Automation',
     icon: Zap,
-    skills: ['DeFi Protocols', 'Smart Contract Interaction', 'Crypto Trading', 'Portfolio Management', 'Market Analysis'],
+    skills: ['AI Agents', 'Prompt Engineering', 'n8n', 'Workflow Automation', 'LLM Integration'],
     color: 'purple'
   },
   {
     title: 'Operations & Process',
     icon: Cog,
-    skills: ['Process Optimization', 'Workflow Design', 'Team Coordination', 'Project Management', 'Quality Assurance'],
+    skills: ['Process Optimization', 'Financial Operations / BPO', 'Workflow Design', 'Team Coordination', 'Project Management'],
     color: 'green'
   },
   {

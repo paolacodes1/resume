@@ -8,7 +8,7 @@ const experiences = [
     company: 'BG Meios de Pagamento',
     role: 'Operations Coordinator',
     period: 'Jun 2024 - Present',
-    description: 'Leading process optimization initiatives in the payment processing sector. Streamlining operations and implementing efficiency improvements.',
+    description: 'Leading process optimization in the payment processing sector. Built Python scripts and automation workflows to reduce manual reporting and streamline internal processes. Manages billing, financial reporting, and proof of payment documentation for multiple clients.',
     location: 'Remote',
     type: 'current'
   },
