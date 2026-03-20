@@ -18,7 +18,7 @@ export function Hero() {
   }
 
   return (
-    <section id="hero" className="min-h-screen flex items-center justify-center px-6 py-20 bg-white">
+    <section id="hero" className="min-h-screen flex items-center justify-center px-6 py-20" style={{ backgroundColor: '#f8f9fa' }}>
       <motion.div
         className="max-w-3xl mx-auto w-full"
         variants={containerVariants}
@@ -27,7 +27,8 @@ export function Hero() {
       >
         {/* Terminal block */}
         <motion.div
-          className="bg-gray-950 rounded-lg p-6 mb-10 font-mono text-sm shadow-lg"
+          className="bg-gray-950 rounded-lg p-6 mb-10 font-mono text-sm"
+          style={{ boxShadow: '0 20px 60px rgba(0, 0, 0, 0.25)' }}
           variants={itemVariants}
         >
           <div className="flex items-center gap-2 mb-4">
