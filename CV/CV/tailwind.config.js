@@ -50,14 +50,15 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        // Terminal palette — warm copper/amber
         terminal: {
-          bg: "#0d1117",
-          border: "#30363d",
-          text: "#c9d1d9",
-          green: "#7c3aed",
-          blue: "#58a6ff",
-          yellow: "#f9c23c",
-          red: "#ff7b72",
+          bg:     "#1a1410",  // warm dark surface
+          border: "#3a2a1a",  // warm dark border
+          text:   "#8a7a65",  // warm muted text
+          green:  "#c45a1a",  // copper — prompt color
+          yellow: "#e08020",  // amber — output/accent
+          blue:   "#c45a1a",  // unified to copper
+          red:    "#c45a1a",  // unified to copper
         },
       },
       borderRadius: {
@@ -80,15 +81,15 @@ module.exports = {
         },
         blink: {
           "0%, 50%": { borderColor: "transparent" },
-          "51%, 100%": { borderColor: "#7c3aed" },
+          "51%, 100%": { borderColor: "#c45a1a" },
         },
         "fade-in": {
           "0%": { opacity: "0", transform: "translateY(20px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
         glow: {
-          "0%, 100%": { boxShadow: "0 0 5px #7c3aed" },
-          "50%": { boxShadow: "0 0 20px #7c3aed, 0 0 30px #7c3aed" },
+          "0%, 100%": { boxShadow: "0 0 5px #c45a1a" },
+          "50%": { boxShadow: "0 0 20px #c45a1a, 0 0 30px #c45a1a" },
         },
       },
       animation: {
