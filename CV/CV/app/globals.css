@@ -2,27 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+
 @layer base {
   :root {
-    --background: 43 33% 97%;
-    --foreground: 155 32% 14%;
-    --card: 43 33% 97%;
-    --card-foreground: 155 32% 14%;
-    --popover: 43 33% 97%;
-    --popover-foreground: 155 32% 14%;
-    --primary: 155 40% 17%;
-    --primary-foreground: 43 33% 97%;
-    --secondary: 36 28% 92%;
-    --secondary-foreground: 155 32% 14%;
-    --muted: 36 28% 92%;
-    --muted-foreground: 155 20% 45%;
-    --accent: 36 28% 89%;
-    --accent-foreground: 155 32% 14%;
-    --destructive: 0 62.8% 45%;
-    --destructive-foreground: 43 33% 97%;
-    --border: 36 20% 85%;
-    --input: 36 20% 85%;
-    --ring: 155 40% 17%;
+    /* Warm dark palette — neural network / amber nodes */
+    --background: 22 33% 4%;        /* #0d0a07 near-black warm */
+    --foreground: 36 44% 93%;       /* #f5f0e8 warm off-white */
+    --card: 27 50% 7%;              /* #1a1208 dark warm surface */
+    --card-foreground: 36 44% 93%;
+    --popover: 27 50% 7%;
+    --popover-foreground: 36 44% 93%;
+    --primary: 22 76% 43%;          /* #c45a1a warm orange/copper */
+    --primary-foreground: 36 44% 97%;
+    --secondary: 27 40% 11%;        /* dark warm secondary */
+    --secondary-foreground: 36 44% 93%;
+    --muted: 27 40% 11%;
+    --muted-foreground: 33 17% 47%; /* #8a7a65 warm muted */
+    --accent: 27 40% 11%;
+    --accent-foreground: 36 44% 93%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 36 44% 97%;
+    --border: 27 40% 14%;           /* warm dark border */
+    --input: 27 40% 14%;
+    --ring: 22 76% 43%;
     --radius: 0.75rem;
   }
 }
@@ -31,49 +34,66 @@
   * {
     @apply border-border;
   }
-  html {
-    scroll-behavior: smooth;
-  }
   body {
-    background-color: #faf8f4;
-    color: #1c3a2f;
-    font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background-color: #0d0a07;
+    color: #f5f0e8;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     line-height: 1.6;
   }
 
-  ::-webkit-scrollbar {
-    width: 8px;
-  }
-  ::-webkit-scrollbar-track {
-    background: #f2ede4;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: #4a7c68;
-    border-radius: 6px;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: #1c3a2f;
-  }
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: #0d0a07; }
+  ::-webkit-scrollbar-thumb { background: #2e2015; border-radius: 6px; }
+  ::-webkit-scrollbar-thumb:hover { background: #4a3420; }
 }
 
 @layer components {
-  .section-label {
-    @apply text-xs font-semibold tracking-widest uppercase text-sage mb-5;
+  .clean-card {
+    @apply bg-card/60 backdrop-blur-sm border border-border/40 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300;
   }
 
-  .brand-card {
-    @apply bg-cream border border-[#ddd9d0] rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300;
+  .terminal-window {
+    @apply bg-card/80 backdrop-blur-sm border border-border/60 rounded-xl overflow-hidden shadow-lg;
   }
 
-  .coral-hover {
-    @apply hover:border-coral/50 hover:shadow-coral/10;
+  .terminal-header {
+    @apply bg-muted/30 px-6 py-3 flex items-center space-x-3 border-b border-border/40;
   }
-}
 
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-.animate-blink {
-  animation: blink 1s step-end infinite;
+  .terminal-dot {
+    @apply w-3 h-3 rounded-full;
+  }
+
+  .terminal-content {
+    @apply p-6 font-mono text-sm;
+  }
+
+  .code-block {
+    @apply bg-card/80 backdrop-blur-sm border border-border/60 rounded-xl p-6 font-mono text-sm overflow-x-auto shadow-inner;
+  }
+
+  .gradient-text {
+    background: linear-gradient(90deg, #c45a1a, #e08020, #f5a623);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glow-border {
+    @apply border border-primary/30 shadow-lg transition-all duration-300;
+    box-shadow: 0 4px 24px rgba(196, 90, 26, 0.12);
+  }
+  .glow-border:hover {
+    box-shadow: 0 4px 32px rgba(196, 90, 26, 0.22);
+  }
+
+  .typing-cursor::after {
+    content: '|';
+    @apply text-primary ml-1;
+    animation: blink 1s step-end infinite;
+  }
+
+  .clean-section { @apply py-20 px-4; }
+  .clean-heading  { @apply text-4xl md:text-5xl font-bold mb-6 gradient-text; }
+  .clean-subheading { @apply text-xl md:text-2xl text-muted-foreground mb-8 leading-relaxed; }
 }

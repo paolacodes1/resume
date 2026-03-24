@@ -52,13 +52,10 @@ const config: Config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // Brand palette
-        forest: "#1c3a2f",
-        "forest-mid": "#2a5240",
-        sage: "#4a7c68",
-        coral: "#d96c4e",
-        cream: "#faf8f4",
-        sand: "#f2ede4",
+        // Terminal palette — warm orange/copper/amber
+        'terminal-green':  '#c45a1a',  // prompt color — warm copper
+        'terminal-yellow': '#e08020',  // output/accent — amber
+        'terminal-text':   '#8a7a65',  // muted terminal text
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -75,8 +72,8 @@ const config: Config = {
           to: { height: "0" },
         },
         blink: {
-          "0%, 100%": { opacity: "1" },
-          "50%": { opacity: "0" },
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '0' },
         },
       },
       animation: {
@@ -85,8 +82,7 @@ const config: Config = {
         blink: "blink 1s step-end infinite",
       },
       fontFamily: {
-        sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
-        serif: ['var(--font-playfair)', 'Georgia', 'serif'],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace'],
       },
     },

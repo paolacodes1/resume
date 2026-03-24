@@ -1,128 +1,205 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
-import { Linkedin } from 'lucide-react'
+import { motion, useScroll, useSpring } from 'framer-motion'
 import HeroSection from '@/components/HeroSection'
 import AboutSection from '@/components/AboutSection'
 import ProjectsSection from '@/components/ProjectsSection'
-import HowIWorkSection from '@/components/HowIWorkSection'
+import SkillsSection from '@/components/SkillsSection'
+import ExperienceSection from '@/components/ExperienceSection'
 import ContactSection from '@/components/ContactSection'
+import { Button } from '@/components/ui/button'
+import { ChevronUp, Menu, X } from 'lucide-react'
 
-const navItems = [
-  { name: 'About', href: 'about' },
-  { name: 'Work', href: 'projects' },
-  { name: 'How I Work', href: 'how-i-work' },
-  { name: 'Contact', href: 'contact' },
+const navigation = [
+  { name: 'Home', href: '#home' },
+  { name: 'About', href: '#about' },
+  { name: 'Experience', href: '#experience' },
+  { name: 'Projects', href: '#projects' },
+  { name: 'Skills', href: '#skills' },
+  { name: 'Contact', href: '#contact' },
 ]
 
 export default function HomePage() {
   const [isScrolled, setIsScrolled] = useState(false)
+  const [activeSection, setActiveSection] = useState('home')
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const { scrollYProgress } = useScroll()
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  })
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 40)
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50)
+
+      const sections = navigation.map(nav => nav.href.substring(1))
+      const currentSection = sections.find(section => {
+        const element = document.getElementById(section)
+        if (element) {
+          const rect = element.getBoundingClientRect()
+          return rect.top <= 100 && rect.bottom >= 100
+        }
+        return false
+      })
+
+      if (currentSection) setActiveSection(currentSection)
+    }
+
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const scrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' })
+
+  const scrollToSection = (href: string) => {
+    document.getElementById(href.substring(1))?.scrollIntoView({ behavior: 'smooth' })
+    setIsMenuOpen(false)
   }
 
   return (
-    <div className="min-h-screen bg-cream">
+    <div className="min-h-screen">
+      {/* Progress Bar */}
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-1 bg-primary z-50 origin-left"
+        style={{ scaleX }}
+      />
+
       {/* Navigation */}
       <motion.nav
-        initial={{ y: -60, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5 }}
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.6 }}
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-          isScrolled ? 'bg-cream/95 backdrop-blur-sm border-b border-[#ddd9d0] shadow-sm' : 'bg-transparent'
+          isScrolled
+            ? 'bg-background/90 backdrop-blur-md border-b border-border'
+            : 'bg-transparent'
         }`}
       >
-        <div className="max-w-4xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between h-16">
-            {/* Logo */}
-            <button
-              onClick={() => scrollTo('home')}
-              className="font-serif text-xl text-forest font-normal hover:text-forest-mid transition-colors"
-            >
-              Paola G.
-            </button>
+            <div className="flex items-center space-x-2">
+              <div className="w-8 h-8 bg-primary rounded-md flex items-center justify-center">
+                <span className="text-primary-foreground font-bold font-mono">P</span>
+              </div>
+              <span className="font-sans font-bold gradient-text">Paola G.</span>
+            </div>
 
-            {/* Desktop nav */}
-            <div className="hidden md:flex items-center gap-8">
-              {navItems.map((item) => (
+            <div className="hidden md:flex items-center space-x-8">
+              {navigation.map((item) => (
                 <button
                   key={item.name}
-                  onClick={() => scrollTo(item.href)}
-                  className="text-sm text-forest/70 hover:text-forest transition-colors font-medium"
+                  onClick={() => scrollToSection(item.href)}
+                  className={`text-sm font-sans transition-colors hover:text-primary ${
+                    activeSection === item.href.substring(1) ? 'text-primary' : 'text-muted-foreground'
+                  }`}
                 >
                   {item.name}
                 </button>
               ))}
-              <a
-                href="https://www.linkedin.com/in/paolagisler"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-forest/60 hover:text-forest transition-colors"
-                aria-label="LinkedIn"
-              >
-                <Linkedin size={16} />
-              </a>
             </div>
 
-            {/* Mobile: just LinkedIn */}
             <div className="md:hidden">
-              <a
-                href="https://www.linkedin.com/in/paolagisler"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-forest/60 hover:text-forest transition-colors"
-                aria-label="LinkedIn"
-              >
-                <Linkedin size={18} />
-              </a>
+              <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              </Button>
             </div>
           </div>
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: isMenuOpen ? 1 : 0, height: isMenuOpen ? 'auto' : 0 }}
+          transition={{ duration: 0.3 }}
+          className={`md:hidden overflow-hidden ${isMenuOpen ? 'border-b border-border' : ''} bg-background/95 backdrop-blur-md`}
+        >
+          <div className="px-4 py-4 space-y-2">
+            {navigation.map((item) => (
+              <button
+                key={item.name}
+                onClick={() => scrollToSection(item.href)}
+                className={`block w-full text-left py-2 px-3 rounded-lg text-sm font-sans transition-colors hover:bg-primary/10 hover:text-primary ${
+                  activeSection === item.href.substring(1) ? 'text-primary bg-primary/10' : 'text-muted-foreground'
+                }`}
+              >
+                {item.name}
+              </button>
+            ))}
+          </div>
+        </motion.div>
       </motion.nav>
 
-      {/* Sections */}
-      <div id="home">
-        <HeroSection />
-      </div>
-
-      <AboutSection />
-      <ProjectsSection />
-      <HowIWorkSection />
-      <ContactSection />
+      {/* Main Content */}
+      <main>
+        <div id="home"><HeroSection /></div>
+        <div id="about" className="pt-20"><AboutSection /></div>
+        <div id="experience" className="pt-20"><ExperienceSection /></div>
+        <div id="projects" className="pt-20"><ProjectsSection /></div>
+        <div id="skills" className="pt-20"><SkillsSection /></div>
+        <div id="contact" className="pt-20"><ContactSection /></div>
+      </main>
 
       {/* Footer */}
-      <footer className="bg-cream border-t border-[#ddd9d0] py-8 px-4">
-        <div className="max-w-3xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-sage">
-          <span className="font-serif text-forest">Paola G.</span>
-          <div className="flex items-center gap-6">
-            <a
-              href="https://github.com/paolacodes1"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-forest transition-colors"
-            >
-              GitHub
-            </a>
-            <a
-              href="https://www.linkedin.com/in/paolagisler"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-forest transition-colors"
-            >
-              LinkedIn
-            </a>
+      <footer className="bg-muted/20 border-t border-border py-12">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="text-center">
+            <div className="flex items-center justify-center space-x-2 mb-4">
+              <div className="w-8 h-8 bg-primary rounded-md flex items-center justify-center">
+                <span className="text-primary-foreground font-bold font-mono">P</span>
+              </div>
+              <span className="font-sans font-bold gradient-text text-xl">Paola G.</span>
+            </div>
+            <p className="text-muted-foreground mb-4 font-mono text-sm">
+              Built with Next.js, React, Tailwind CSS, and Framer Motion
+            </p>
+            <div className="flex justify-center space-x-6 text-sm text-muted-foreground">
+              <a href="https://github.com/paolacodes1" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">GitHub</a>
+              <span>•</span>
+              <a href="https://www.linkedin.com/in/paolagisler" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">LinkedIn</a>
+            </div>
+            <div className="mt-8 pt-8 border-t border-border text-xs text-muted-foreground font-mono">
+              <p>© 2024 Paola G. All rights reserved.</p>
+              <p className="mt-1">
+                <span className="text-primary">$</span> echo &quot;Always learning, always building&quot;{' '}
+                <span className="animate-blink text-primary">|</span>
+              </p>
+            </div>
           </div>
-          <span className="text-xs">Built with Next.js · Tailwind · Framer Motion</span>
         </div>
       </footer>
+
+      {/* Scroll to Top */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: isScrolled ? 1 : 0, scale: isScrolled ? 1 : 0 }}
+        transition={{ duration: 0.3 }}
+        className="fixed bottom-8 right-8 z-30"
+      >
+        <Button onClick={scrollToTop} size="icon" className="rounded-full shadow-lg hover:shadow-xl transition-all duration-300">
+          <ChevronUp className="w-5 h-5" />
+        </Button>
+      </motion.div>
+
+      {/* Background Effects — warm orange orbs */}
+      <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/3 left-1/5 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/3 right-1/5 w-96 h-96 bg-amber-600/4 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '3s' }} />
+        <div className="absolute top-2/3 left-2/3 w-64 h-64 bg-orange-700/3 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '6s' }} />
+
+        {/* Warm grid */}
+        <div
+          className="absolute inset-0 opacity-[0.015]"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(196, 90, 26, 0.08) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(196, 90, 26, 0.08) 1px, transparent 1px)
+            `,
+            backgroundSize: '60px 60px'
+          }}
+        />
+      </div>
     </div>
   )
 }
