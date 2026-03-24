@@ -17,7 +17,7 @@ export default function HeroSection() {
           transition={{ duration: 0.8 }}
         >
           <h1 className="font-serif text-7xl md:text-8xl font-normal text-forest leading-tight mb-4">
-            Paola G
+            Paola G.
           </h1>
         </motion.div>
 
@@ -27,7 +27,7 @@ export default function HeroSection() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="font-serif italic text-2xl md:text-3xl text-coral mb-4"
         >
-          Building AI systems for real operations.
+          I build systems that run without me.
         </motion.p>
 
         <motion.p
@@ -36,7 +36,7 @@ export default function HeroSection() {
           transition={{ duration: 0.8, delay: 0.35 }}
           className="text-base text-sage tracking-wide mb-10"
         >
-          Python · Claude Code · Based in Kuala Lumpur
+          Python · Claude Code · Based in Kuala Lumpur 🇲🇾
         </motion.p>
 
         <motion.div

@@ -13,11 +13,11 @@ export default function ContactSection() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <p className="text-xs font-semibold tracking-widest uppercase text-sage mb-6">Work With Me</p>
+          <p className="text-xs font-semibold tracking-widest uppercase text-sage mb-8">Work With Me</p>
 
-          <h2 className="font-serif text-3xl md:text-4xl text-cream leading-snug mb-10 max-w-xl mx-auto">
-            "If you have an operation that's running on workarounds and manual fixes — let's talk."
-          </h2>
+          <p className="font-serif italic text-2xl md:text-3xl text-cream leading-snug mb-12 max-w-xl mx-auto">
+            "If you have an operation running on workarounds and manual fixes, and you're ready to actually fix it — let's talk."
+          </p>
 
           <div className="flex flex-wrap items-center justify-center gap-6">
             <a
@@ -33,7 +33,6 @@ export default function ContactSection() {
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-cream/90 hover:text-cream border border-cream/30 hover:border-cream px-6 py-3 rounded-lg transition-all duration-200"
-              aria-label="LinkedIn"
             >
               <Linkedin size={16} />
               LinkedIn

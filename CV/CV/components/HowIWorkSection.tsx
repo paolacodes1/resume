@@ -4,24 +4,20 @@ import { motion } from 'framer-motion'
 
 const cards = [
   {
-    title: 'Operations first',
-    body: "I start with the broken process, not the tech. The tool comes after I understand what's actually failing.",
-    icon: '⚙️',
+    title: 'Systems before tools',
+    body: "I start with the broken process. The tool comes after I understand what's actually failing — and why workarounds accumulated in the first place.",
   },
   {
-    title: 'AI as a partner',
-    body: "I use Claude Code as a collaborator — not a shortcut. Every system I build, I understand and can explain.",
-    icon: '🤝',
+    title: "I build for when I'm not there",
+    body: "Every system I design runs without constant attention. If it needs me to babysit it, I built it wrong.",
   },
   {
-    title: 'Bias for shipping',
-    body: "Working prototypes beat perfect plans. I iterate fast and document as I go.",
-    icon: '🚀',
+    title: 'AI as a real collaborator',
+    body: "I use Claude Code as a thinking partner, not a shortcut. Every system I ship, I understand and can explain to anyone.",
   },
   {
-    title: 'Context from the field',
-    body: "Six years in production taught me to solve problems in real time under pressure. That doesn't go away.",
-    icon: '🎬',
+    title: 'Pressure-tested instincts',
+    body: "Six years of film production taught me to solve problems in real time with no margin for error. That framework didn't go away when I changed industries.",
   },
 ]
 
@@ -50,8 +46,7 @@ export default function HowIWorkSection() {
               viewport={{ once: true }}
               className="bg-cream border border-[#ddd9d0] rounded-xl p-6"
             >
-              <span className="text-2xl mb-4 block">{card.icon}</span>
-              <h3 className="text-base font-semibold text-forest mb-2">{card.title}</h3>
+              <h3 className="text-base font-semibold text-forest mb-3">{card.title}</h3>
               <p className="text-sm text-forest/70 leading-relaxed">{card.body}</p>
             </motion.div>
           ))}
