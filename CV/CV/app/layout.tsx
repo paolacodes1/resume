@@ -1,32 +1,27 @@
 import type { Metadata } from 'next'
-import { Inter, JetBrains_Mono } from 'next/font/google'
+import { Inter, Playfair_Display } from 'next/font/google'
 import './globals.css'
 
-const inter = Inter({ 
+const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
 })
 
-const jetbrainsMono = JetBrains_Mono({ 
+const playfair = Playfair_Display({
   subsets: ['latin'],
-  variable: '--font-mono',
+  variable: '--font-playfair',
 })
 
 export const metadata: Metadata = {
-  title: 'Paola G. | AI-Powered Builder & Creative Technologist',
-  description: 'From film sets to operations to building with AI. Creating solutions that bridge creativity, technology, and business impact.',
-  keywords: 'AI builder, creative technologist, process automation, problem solver, film production, operations, business solutions',
+  title: 'Paola G. | Building AI Systems for Real Operations',
+  description: 'From film sets to operations to building with AI. Creating tools that fix the things that actually matter.',
+  keywords: 'AI builder, operations, process automation, Python, Claude Code, Kuala Lumpur',
   authors: [{ name: 'Paola G.' }],
   openGraph: {
-    title: 'Paola G. | AI-Powered Builder & Creative Technologist',
-    description: 'From film sets to operations to building with AI. Creating solutions that bridge creativity, technology, and business impact.',
+    title: 'Paola G. | Building AI Systems for Real Operations',
+    description: 'From film sets to operations to building with AI.',
     type: 'website',
     locale: 'en_US',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Paola G. | AI-Powered Builder & Creative Technologist',
-    description: 'From film sets to operations to building with AI. Creating solutions that bridge creativity, technology, and business impact.',
   },
 }
 
@@ -36,11 +31,9 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="dark">
-      <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
-        <div className="min-h-screen">
-          {children}
-        </div>
+    <html lang="en">
+      <body className={`${inter.variable} ${playfair.variable} font-sans antialiased bg-cream`}>
+        {children}
       </body>
     </html>
   )

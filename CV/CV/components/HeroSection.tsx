@@ -1,163 +1,72 @@
 'use client'
 
-import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Terminal, Github, Linkedin, MapPin, Mail, Phone } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-
-const terminalLines = [
-  { prompt: 'visitor@paola:~$', command: 'who_am_i', delay: 0 },
-  { prompt: '', command: 'Paola G - Professional Portfolio', delay: 800, color: 'text-white' },
-  { prompt: 'visitor@paola:~$', command: 'cat story.txt', delay: 1600 },
-  { prompt: '', command: 'AI-Powered Builder & Creative Technologist', delay: 2400, color: 'text-white' },
-  { prompt: '', command: 'From Film Sets → Operations → Building with AI', delay: 2800, color: 'text-terminal-text' },
-  { prompt: 'visitor@paola:~$', command: 'ls skills/', delay: 3600 },
-  { prompt: '', command: '→ Problem Solving', delay: 4000, color: 'text-terminal-yellow' },
-  { prompt: '', command: '→ Process Automation', delay: 4200, color: 'text-terminal-yellow' },
-  { prompt: '', command: '→ AI-Assisted Building', delay: 4400, color: 'text-terminal-yellow' },
-  { prompt: '', command: '→ Creative Solutions', delay: 4600, color: 'text-terminal-yellow' },
-  { prompt: 'visitor@paola:~$', command: '', delay: 5100, cursor: true },
-]
-
-interface TerminalLineProps {
-  line: typeof terminalLines[0]
-  isVisible: boolean
-}
-
-const TerminalLine = ({ line, isVisible }: TerminalLineProps) => {
-  const [displayedText, setDisplayedText] = useState('')
-  const [showCursor, setShowCursor] = useState(false)
-
-  useEffect(() => {
-    if (!isVisible) return
-
-    const fullText = line.prompt + (line.prompt ? ' ' : '') + line.command
-    let currentIndex = 0
-
-    const typingTimer = setInterval(() => {
-      if (currentIndex <= fullText.length) {
-        setDisplayedText(fullText.slice(0, currentIndex))
-        currentIndex++
-      } else {
-        clearInterval(typingTimer)
-        if (line.cursor) {
-          setShowCursor(true)
-        }
-      }
-    }, 30)
-
-    return () => clearInterval(typingTimer)
-  }, [isVisible, line])
-
-  if (!isVisible) return null
-
-  return (
-    <div className="flex items-center font-mono text-base">
-      <span className={line.color || 'text-terminal-text'}>
-        {line.prompt && (
-          <span className="text-terminal-green">{line.prompt}</span>
-        )}
-        {line.prompt && ' '}
-        <span className={line.color || 'text-terminal-text'}>
-          {line.command}
-        </span>
-        {showCursor && (
-          <span className="animate-blink text-terminal-green ml-1">|</span>
-        )}
-      </span>
-    </div>
-  )
-}
+import { Linkedin } from 'lucide-react'
 
 export default function HeroSection() {
-  const [visibleLines, setVisibleLines] = useState<number[]>([])
-
-  useEffect(() => {
-    terminalLines.forEach((line, index) => {
-      setTimeout(() => {
-        setVisibleLines(prev => [...prev, index])
-      }, line.delay)
-    })
-  }, [])
+  const scrollTo = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+  }
 
   return (
-    <section className="min-h-screen flex items-center justify-center px-4 py-20">
-      <div className="max-w-4xl w-full">
+    <section className="min-h-screen flex items-center justify-center bg-cream px-4 py-24">
+      <div className="max-w-3xl w-full">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="terminal-window"
+          transition={{ duration: 0.8 }}
         >
-          {/* Terminal Header */}
-          <div className="terminal-header">
-            <div className="flex items-center space-x-2">
-              <div className="terminal-dot bg-red-500"></div>
-              <div className="terminal-dot bg-yellow-500"></div>
-              <div className="terminal-dot bg-green-500"></div>
-            </div>
-            <div className="flex-1 text-center">
-              <span className="text-terminal-text text-sm font-mono">
-                paola@workspace: ~/story
-              </span>
-            </div>
-            <div className="flex items-center">
-              <Terminal className="w-4 h-4 text-terminal-text" />
-            </div>
-          </div>
-
-          {/* Terminal Content */}
-          <div className="terminal-content min-h-[500px] text-base">
-            <div className="space-y-3">
-              {terminalLines.map((line, index) => (
-                <TerminalLine
-                  key={index}
-                  line={line}
-                  isVisible={visibleLines.includes(index)}
-                />
-              ))}
-            </div>
-          </div>
+          <h1 className="font-serif text-7xl md:text-8xl font-normal text-forest leading-tight mb-4">
+            Paola G
+          </h1>
         </motion.div>
 
-        {/* Action Buttons */}
-        <motion.div
+        <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 6 }}
-          className="flex flex-wrap gap-4 justify-center mt-8"
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="font-serif italic text-2xl md:text-3xl text-coral mb-4"
         >
-          <Button 
-            variant="terminal" 
-            size="lg"
-            className="group hover:glow-border transition-all duration-300 px-6 py-3 text-base"
-            onClick={() => window.open('https://github.com/paolacodes1', '_blank')}
+          Building AI systems for real operations.
+        </motion.p>
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.35 }}
+          className="text-base text-sage tracking-wide mb-10"
+        >
+          Python · Claude Code · Based in Kuala Lumpur
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="flex flex-wrap gap-4 items-center"
+        >
+          <button
+            onClick={() => scrollTo('projects')}
+            className="bg-forest text-cream px-7 py-3 rounded-lg font-medium hover:bg-forest-mid transition-colors duration-200"
           >
-            <Github className="w-5 h-5 mr-3 group-hover:animate-pulse" />
-            View GitHub
-          </Button>
-          
-          <Button 
-            variant="outline" 
-            size="lg"
-            className="group border-terminal-border hover:border-primary hover:glow-border transition-all duration-300 px-6 py-3 text-base"
-            onClick={() => window.open('https://www.linkedin.com/in/paolagisler', '_blank')}
+            See My Work
+          </button>
+          <button
+            onClick={() => scrollTo('contact')}
+            className="border border-forest text-forest px-7 py-3 rounded-lg font-medium hover:bg-sand transition-colors duration-200"
           >
-            <Linkedin className="w-5 h-5 mr-3 group-hover:animate-pulse" />
-            LinkedIn
-          </Button>
-          
-          <Button 
-            variant="outline" 
-            size="lg"
-            className="group border-terminal-border hover:border-primary hover:glow-border transition-all duration-300 px-6 py-3 text-base"
-            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-          >
-            <Mail className="w-5 h-5 mr-3 group-hover:animate-pulse" />
             Get In Touch
-          </Button>
+          </button>
+          <a
+            href="https://www.linkedin.com/in/paolagisler"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-3 border border-[#ddd9d0] rounded-lg text-forest hover:border-forest transition-colors duration-200"
+            aria-label="LinkedIn"
+          >
+            <Linkedin size={18} />
+          </a>
         </motion.div>
-
       </div>
     </section>
   )

@@ -52,6 +52,13 @@ const config: Config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        // Brand palette
+        forest: "#1c3a2f",
+        "forest-mid": "#2a5240",
+        sage: "#4a7c68",
+        coral: "#d96c4e",
+        cream: "#faf8f4",
+        sand: "#f2ede4",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -67,13 +74,19 @@ const config: Config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        blink: {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        blink: "blink 1s step-end infinite",
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
+        serif: ['var(--font-playfair)', 'Georgia', 'serif'],
         mono: ['JetBrains Mono', 'monospace'],
       },
     },
