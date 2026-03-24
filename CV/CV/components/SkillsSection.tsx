@@ -10,8 +10,8 @@ const journeyPhases = [
     phase: "Film Sets",
     period: "2018-2024",
     icon: Film,
-    color: "text-blue-400",
-    bgColor: "bg-blue-400/10",
+    color: "text-primary",
+    bgColor: "bg-primary/10",
     title: "",
     description: "Six years coordinating complex productions under pressure taught me the fundamentals of problem-solving and team coordination.",
     skills: [
@@ -26,8 +26,8 @@ const journeyPhases = [
     phase: "Operations",
     period: "2024-Present", 
     icon: Cog,
-    color: "text-green-400",
-    bgColor: "bg-green-400/10",
+    color: "text-primary",
+    bgColor: "bg-primary/10",
     title: "",
     description: "Current role in BPO operations has sharpened my ability to design and optimize systems that actually work.",
     skills: [
@@ -42,8 +42,8 @@ const journeyPhases = [
     phase: "AI-Powered Building",
     period: "Learning & Building",
     icon: Sparkles,
-    color: "text-purple-400", 
-    bgColor: "bg-purple-400/10",
+    color: "text-primary",
+    bgColor: "bg-primary/10",
     title: "",
     description: "Combining process knowledge with AI tools to build solutions faster than traditional development approaches.",
     skills: [

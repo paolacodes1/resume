@@ -12,14 +12,14 @@ const contactInfo = [
     label: "GitHub",
     value: "github.com/paolacodes1",
     link: "https://github.com/paolacodes1",
-    color: "text-purple-400"
+    color: "text-primary"
   },
   {
     icon: Linkedin,
     label: "LinkedIn",
     value: "linkedin.com/in/paolagisler",
     link: "https://www.linkedin.com/in/paolagisler",
-    color: "text-cyan-400"
+    color: "text-[#e08020]"
   }
 ]
 
