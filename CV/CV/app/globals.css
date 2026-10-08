@@ -15,6 +15,10 @@
     --muted: #B9AA99;      /* labels, mono text */
     --accent: #FF7A2F;     /* accent, buttons */
     --accent-ink: #140A04; /* text on accent */
+
+    --font-display: 'Big Shoulders Display';
+    --font-sans: 'Instrument Sans';
+    --font-mono: 'JetBrains Mono';
   }
 
   html {

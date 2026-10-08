@@ -14,7 +14,7 @@ export default function SlateBar() {
             Paola Gisler
           </span>
           <span>Role: Builder</span>
-          <span>Loc: Kuala Lumpur ↔ Santo Ângelo</span>
+          <span>Loc: Malaysia ↔ Brasil</span>
         </div>
         <nav aria-label="Main" className="flex gap-2 text-[15px]">
           {navigation.map((item) => (

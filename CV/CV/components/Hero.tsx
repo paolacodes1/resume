@@ -19,7 +19,7 @@ export default function Hero() {
             Builder<span className="text-accent">.</span>
           </h1>
           <p className="mt-7 max-w-[620px] text-[clamp(20px,2.1vw,26px)] leading-[1.4] text-text">
-            I&apos;ve been building systems since before I wrote code. On film sets it was schedules and logistics. At HZN it was processes. Now it&apos;s software and AI agents.
+            I&apos;ve been building systems since before I wrote code. On film sets it was schedules and logistics. Now it&apos;s software and AI agents.
           </p>
           <p className="mt-4 max-w-[560px] text-[17px] leading-[1.6] text-muted">
             The best part is still the same: the moment it finally clicks and works, and the time it gives back.

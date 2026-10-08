@@ -1,27 +1,9 @@
 import type { Metadata } from 'next'
-import { Big_Shoulders_Display, Instrument_Sans, JetBrains_Mono } from 'next/font/google'
+import './fonts.css'
 import './globals.css'
 
-const display = Big_Shoulders_Display({
-  subsets: ['latin'],
-  weight: ['600', '800', '900'],
-  variable: '--font-display',
-})
-
-const sans = Instrument_Sans({
-  subsets: ['latin'],
-  weight: ['400', '500', '600'],
-  variable: '--font-sans',
-})
-
-const mono = JetBrains_Mono({
-  subsets: ['latin'],
-  weight: ['400', '500'],
-  variable: '--font-mono',
-})
-
 const title = 'Paola Gisler | Builder'
-const description = "I've been building systems since before I wrote code. On film sets it was schedules and logistics. At HZN it was processes. Now it's software and AI agents."
+const description = "I've been building systems since before I wrote code. On film sets it was schedules and logistics. Now it's software and AI agents."
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://paolacodes1.github.io'),
@@ -61,7 +43,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${display.variable} ${sans.variable} ${mono.variable}`}>
+    <html lang="en">
       <body className="font-sans">
         {children}
       </body>
