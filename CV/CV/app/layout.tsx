@@ -1,20 +1,32 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Big_Shoulders_Display, Instrument_Sans, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 
-const inter = Inter({
+const display = Big_Shoulders_Display({
   subsets: ['latin'],
-  variable: '--font-inter',
+  weight: ['600', '800', '900'],
+  variable: '--font-display',
 })
 
-const title = 'Paola Gisler | Systems, dashboards and AI agents for small businesses'
-const description = 'I build dashboards, financial reporting and AI agents for hotels, clinics and finance teams.'
+const sans = Instrument_Sans({
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+  variable: '--font-sans',
+})
+
+const mono = JetBrains_Mono({
+  subsets: ['latin'],
+  weight: ['400', '500'],
+  variable: '--font-mono',
+})
+
+const title = 'Paola Gisler | Builder'
+const description = "I've been building systems since before I wrote code. On film sets it was schedules and logistics. At HZN it was processes. Now it's software and AI agents."
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://paolacodes1.github.io'),
   title,
   description,
-  keywords: 'operations systems, dashboards, financial reporting, AI agents, Next.js, Python, Claude Code, Kuala Lumpur',
   authors: [{ name: 'Paola Gisler', url: 'https://paolacodes1.github.io/resume/' }],
   alternates: {
     canonical: '/resume/',
@@ -31,7 +43,7 @@ export const metadata: Metadata = {
         url: '/resume/og.png',
         width: 1200,
         height: 630,
-        alt: 'Paola Gisler — I build the systems small businesses run on.',
+        alt: 'Paola Gisler — Builder.',
       },
     ],
   },
@@ -49,8 +61,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={`${inter.variable} font-sans antialiased`}>
+    <html lang="en" className={`${display.variable} ${sans.variable} ${mono.variable}`}>
+      <body className="font-sans">
         {children}
       </body>
     </html>
