@@ -49,3 +49,5 @@ Thumbs.db
 
 # Private documentation - DO NOT UPLOAD
 ../../PRIVATE_PROJECT_NOTES.md
+# Local npm cache
+npm-cache/
