@@ -48,6 +48,25 @@
   }
 }
 
+/* Darkens the energy lines under the hero copy so it stays readable.
+   Phone: top to bottom over the stacked text. Desktop: left side only, lines still glow on the right. */
+.hero-scrim {
+  background: linear-gradient(180deg,
+    rgba(13, 10, 8, 0.55) 0%,
+    rgba(13, 10, 8, 0.8) 25%,
+    rgba(13, 10, 8, 0.8) 80%,
+    rgba(13, 10, 8, 0.45) 100%);
+}
+@media (min-width: 768px) {
+  .hero-scrim {
+    background: linear-gradient(90deg,
+      rgba(13, 10, 8, 0.85) 0%,
+      rgba(13, 10, 8, 0.72) 30%,
+      rgba(13, 10, 8, 0.35) 52%,
+      rgba(13, 10, 8, 0) 68%);
+  }
+}
+
 @keyframes flow {
   to { stroke-dashoffset: -600; }
 }

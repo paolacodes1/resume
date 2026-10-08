@@ -10,6 +10,7 @@ export default function Hero() {
   return (
     <section className="relative overflow-hidden border-b border-line">
       <HeroBackground />
+      <div aria-hidden="true" className="hero-scrim absolute inset-0" />
 
       <div className="relative max-w-page mx-auto px-6 pt-[clamp(56px,9vw,120px)] pb-[clamp(56px,8vw,104px)] flex flex-wrap items-end gap-12">
         <div className="flex-[999_1_560px] min-w-0">
