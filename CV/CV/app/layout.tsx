@@ -7,17 +7,39 @@ const inter = Inter({
   variable: '--font-inter',
 })
 
+const title = 'Paola Gisler | Systems, dashboards and AI agents for small businesses'
+const description = 'I build dashboards, financial reporting and AI agents for hotels, clinics and finance teams.'
 
 export const metadata: Metadata = {
-  title: 'Paola G. | Building AI Systems for Real Operations',
-  description: 'From film sets to operations to building with AI. Creating tools that fix the things that actually matter.',
-  keywords: 'AI builder, operations, process automation, Python, Claude Code, Kuala Lumpur',
-  authors: [{ name: 'Paola G.' }],
+  metadataBase: new URL('https://paolacodes1.github.io'),
+  title,
+  description,
+  keywords: 'operations systems, dashboards, financial reporting, AI agents, Next.js, Python, Claude Code, Kuala Lumpur',
+  authors: [{ name: 'Paola Gisler', url: 'https://paolacodes1.github.io/resume/' }],
+  alternates: {
+    canonical: '/resume/',
+  },
   openGraph: {
-    title: 'Paola G. | Building AI Systems for Real Operations',
-    description: 'From film sets to operations to building with AI.',
+    title,
+    description,
+    url: '/resume/',
+    siteName: 'Paola Gisler',
     type: 'website',
     locale: 'en_US',
+    images: [
+      {
+        url: '/resume/og.png',
+        width: 1200,
+        height: 630,
+        alt: 'Paola Gisler — I build the systems small businesses run on.',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title,
+    description,
+    images: ['/resume/og.png'],
   },
 }
 

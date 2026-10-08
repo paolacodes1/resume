@@ -1,175 +1,84 @@
-'use client'
+import { Github, Linkedin } from 'lucide-react'
 
-import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
-import { Terminal, Github, Linkedin, Mail } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-
+// Decorative terminal accent. Each line fades in 0.4s after the previous one.
 const terminalLines = [
-  { prompt: 'visitor@paola:~$', command: 'who_am_i', delay: 0 },
-  { prompt: '', command: 'Paola G.', delay: 800, color: 'text-white' },
-  { prompt: 'visitor@paola:~$', command: 'cat story.txt', delay: 1600 },
-  { prompt: '', command: 'AI-Powered Builder & Creative Technologist', delay: 2400, color: 'text-white' },
-  { prompt: '', command: 'Location: Available for remote opportunities', delay: 2800, color: 'text-terminal-text' },
-  { prompt: '', command: 'From Film Sets → Operations → Building with AI', delay: 3200, color: 'text-terminal-text' },
-  { prompt: 'visitor@paola:~$', command: 'ls skills/', delay: 4000 },
-  { prompt: '', command: '→ Problem Solving', delay: 4400, color: 'text-terminal-yellow' },
-  { prompt: '', command: '→ Process Automation', delay: 4600, color: 'text-terminal-yellow' },
-  { prompt: '', command: '→ AI-Assisted Building', delay: 4800, color: 'text-terminal-yellow' },
-  { prompt: '', command: '→ Creative Solutions', delay: 5000, color: 'text-terminal-yellow' },
-  { prompt: 'visitor@paola:~$', command: '', delay: 5500, cursor: true },
+  { prompt: true, text: 'whoami' },
+  { prompt: false, text: 'Paola Gisler' },
+  { prompt: true, text: 'ls ./work' },
+  { prompt: false, text: 'reporting/  hotel-ops/  clinic-agents/' },
 ]
 
-interface TerminalLineProps {
-  line: typeof terminalLines[0]
-  isVisible: boolean
-}
-
-const TerminalLine = ({ line, isVisible }: TerminalLineProps) => {
-  const [displayedText, setDisplayedText] = useState('')
-  const [showCursor, setShowCursor] = useState(false)
-
-  useEffect(() => {
-    if (!isVisible) return
-
-    const fullText = line.prompt + (line.prompt ? ' ' : '') + line.command
-    let currentIndex = 0
-
-    const typingTimer = setInterval(() => {
-      if (currentIndex <= fullText.length) {
-        setDisplayedText(fullText.slice(0, currentIndex))
-        currentIndex++
-      } else {
-        clearInterval(typingTimer)
-        if (line.cursor) {
-          setShowCursor(true)
-        }
-      }
-    }, 30)
-
-    return () => clearInterval(typingTimer)
-  }, [isVisible, line])
-
-  if (!isVisible) return null
-
-  return (
-    <div className="flex items-center font-mono text-base">
-      <span className={line.color || 'text-terminal-text'}>
-        {line.prompt && (
-          <span className="text-terminal-green">{line.prompt}</span>
-        )}
-        {line.prompt && ' '}
-        <span className={line.color || 'text-terminal-text'}>
-          {line.command}
-        </span>
-        {showCursor && (
-          <span className="animate-blink text-terminal-green ml-1">|</span>
-        )}
-      </span>
-    </div>
-  )
-}
-
 export default function HeroSection() {
-  const [visibleLines, setVisibleLines] = useState<number[]>([])
-
-  useEffect(() => {
-    terminalLines.forEach((line, index) => {
-      setTimeout(() => {
-        setVisibleLines(prev => [...prev, index])
-      }, line.delay)
-    })
-  }, [])
-
   return (
-    <section className="min-h-screen flex items-center justify-center px-4 py-20">
-      <div className="max-w-4xl w-full">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="terminal-window"
-        >
-          {/* Terminal Header */}
-          <div className="terminal-header">
-            <div className="flex items-center space-x-2">
-              <div className="terminal-dot bg-red-500"></div>
-              <div className="terminal-dot bg-yellow-500"></div>
-              <div className="terminal-dot bg-green-500"></div>
-            </div>
-            <div className="flex-1 text-center">
-              <span className="text-terminal-text text-sm font-mono">
-                paola@workspace: ~/story
-              </span>
-            </div>
-            <div className="flex items-center">
-              <Terminal className="w-4 h-4 text-terminal-text" />
-            </div>
-          </div>
+    <section id="home" className="px-4 pt-28 pb-16 md:pt-40 md:pb-24">
+      <div className="max-w-5xl mx-auto">
+        {/* TODO(paola): add CV/CV/public/paola.jpg and show it as a rounded square
+            beside the headline on desktop and above it on phone. */}
+        <h1 className="text-4xl md:text-6xl font-bold tracking-tight leading-[1.1] text-foreground max-w-4xl">
+          I build the systems small businesses run on.
+        </h1>
+        <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed">
+          Dashboards, financial reporting and AI agents for hotels, clinics and finance teams,
+          designed around how the work gets done day to day.
+        </p>
+        <p className="mt-4 text-base md:text-lg text-foreground/90 italic">
+          Based in Kuala Lumpur. Open to a few new system builds.
+        </p>
 
-          {/* Terminal Content */}
-          <div className="terminal-content min-h-[500px] text-base">
-            <div className="space-y-3">
-              {terminalLines.map((line, index) => (
-                <TerminalLine
-                  key={index}
-                  line={line}
-                  isVisible={visibleLines.includes(index)}
-                />
-              ))}
-            </div>
-          </div>
-        </motion.div>
+        <div className="mt-8 flex flex-wrap items-center gap-3">
+          <a
+            href="#contact"
+            className="inline-flex items-center justify-center h-12 px-6 rounded-md bg-primary text-primary-foreground text-base font-semibold hover:bg-primary/90 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+          >
+            Get in touch
+          </a>
+          <a
+            href="#projects"
+            className="inline-flex items-center justify-center h-12 px-6 rounded-md border border-border text-foreground text-base font-semibold hover:border-highlight hover:text-highlight transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          >
+            See my work
+          </a>
+        </div>
 
-        {/* Action Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 6 }}
-          className="flex flex-wrap gap-4 justify-center mt-8"
-        >
-          <Button 
-            variant="terminal" 
-            size="lg"
-            className="group hover:glow-border transition-all duration-300"
-            onClick={() => window.open('https://github.com/paolacodes1', '_blank')}
+        <div className="mt-6 flex flex-wrap gap-6 text-base">
+          <a
+            href="https://www.linkedin.com/in/paolagisler"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-muted-foreground hover:text-highlight transition-colors"
           >
-            <Github className="w-4 h-4 mr-2 group-hover:animate-pulse" />
-            View GitHub
-          </Button>
-          
-          <Button 
-            variant="outline" 
-            size="lg"
-            className="group border-terminal-border hover:border-primary hover:glow-border transition-all duration-300"
-            onClick={() => window.open('https://www.linkedin.com/in/paolagisler', '_blank')}
-          >
-            <Linkedin className="w-4 h-4 mr-2 group-hover:animate-pulse" />
+            <Linkedin className="w-4 h-4" aria-hidden="true" />
             LinkedIn
-          </Button>
-          
-          <Button 
-            variant="outline" 
-            size="lg"
-            className="group border-terminal-border hover:border-primary hover:glow-border transition-all duration-300"
-            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+          </a>
+          <a
+            href="https://github.com/paolacodes1"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-muted-foreground hover:text-highlight transition-colors"
           >
-            <Mail className="w-4 h-4 mr-2 group-hover:animate-pulse" />
-            Get In Touch
-          </Button>
-        </motion.div>
+            <Github className="w-4 h-4" aria-hidden="true" />
+            GitHub
+          </a>
+        </div>
 
-        {/* Quick Info */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 7 }}
-          className="flex flex-wrap justify-center gap-6 mt-6 text-sm text-muted-foreground"
+        <div
+          aria-hidden="true"
+          className="mt-12 max-w-md rounded-lg border border-border bg-card/60 px-5 py-4 font-mono text-sm leading-7"
         >
-          <div className="flex items-center gap-2">
-            <span>Available for remote opportunities</span>
-          </div>
-        </motion.div>
+          {terminalLines.map((line, index) => (
+            <div
+              key={index}
+              className="terminal-line"
+              style={{ animationDelay: `${index * 0.4}s` }}
+            >
+              {line.prompt && <span className="text-terminal-green">$ </span>}
+              <span className={line.prompt ? 'text-foreground' : 'text-terminal-text'}>{line.text}</span>
+              {index === terminalLines.length - 1 && (
+                <span className="caret ml-1 text-terminal-green">▍</span>
+              )}
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   )

@@ -12,11 +12,8 @@ import { Button } from '@/components/ui/button'
 import { ChevronUp, Menu, X } from 'lucide-react'
 
 const navigation = [
-  { name: 'Home', href: '#home' },
+  { name: 'Work', href: '#projects' },
   { name: 'About', href: '#about' },
-  { name: 'Experience', href: '#experience' },
-  { name: 'Projects', href: '#projects' },
-  { name: 'Skills', href: '#skills' },
   { name: 'Contact', href: '#contact' },
 ]
 
@@ -45,19 +42,14 @@ export default function HomePage() {
         return false
       })
 
-      if (currentSection) setActiveSection(currentSection)
+      setActiveSection(currentSection ?? '')
     }
 
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' })
-
-  const scrollToSection = (href: string) => {
-    document.getElementById(href.substring(1))?.scrollIntoView({ behavior: 'smooth' })
-    setIsMenuOpen(false)
-  }
+  const scrollToTop = () => window.scrollTo({ top: 0 })
 
   return (
     <div className="min-h-screen">
@@ -68,104 +60,88 @@ export default function HomePage() {
       />
 
       {/* Navigation */}
-      <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.6 }}
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-          isScrolled
+      <nav
+        className={`fixed top-0 left-0 right-0 z-40 transition-colors duration-300 ${
+          isScrolled || isMenuOpen
             ? 'bg-background/90 backdrop-blur-md border-b border-border'
             : 'bg-transparent'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4">
+        <div className="max-w-5xl mx-auto px-4">
           <div className="flex items-center justify-between h-16">
-            <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-primary rounded-md flex items-center justify-center">
-                <span className="text-primary-foreground font-bold font-mono">P</span>
-              </div>
-              <span className="font-sans font-bold gradient-text">Paola G.</span>
-            </div>
+            <a href="#home" className="flex items-center space-x-2">
+              <span className="w-8 h-8 bg-primary rounded-md flex items-center justify-center text-primary-foreground font-bold font-mono">
+                P
+              </span>
+              <span className="font-sans font-bold text-foreground">Paola Gisler</span>
+            </a>
 
             <div className="hidden md:flex items-center space-x-8">
               {navigation.map((item) => (
-                <button
+                <a
                   key={item.name}
-                  onClick={() => scrollToSection(item.href)}
-                  className={`text-sm font-sans transition-colors hover:text-primary ${
-                    activeSection === item.href.substring(1) ? 'text-primary' : 'text-muted-foreground'
+                  href={item.href}
+                  className={`text-base font-sans transition-colors hover:text-highlight ${
+                    activeSection === item.href.substring(1) ? 'text-highlight' : 'text-muted-foreground'
                   }`}
                 >
                   {item.name}
-                </button>
+                </a>
               ))}
             </div>
 
             <div className="md:hidden">
-              <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+              <Button
+                variant="ghost"
+                size="icon"
+                aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+                aria-expanded={isMenuOpen}
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+              >
                 {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
               </Button>
             </div>
           </div>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: isMenuOpen ? 1 : 0, height: isMenuOpen ? 'auto' : 0 }}
-          transition={{ duration: 0.3 }}
-          className={`md:hidden overflow-hidden ${isMenuOpen ? 'border-b border-border' : ''} bg-background/95 backdrop-blur-md`}
-        >
-          <div className="px-4 py-4 space-y-2">
+        {isMenuOpen && (
+          <div className="md:hidden px-4 pb-4 space-y-1">
             {navigation.map((item) => (
-              <button
+              <a
                 key={item.name}
-                onClick={() => scrollToSection(item.href)}
-                className={`block w-full text-left py-2 px-3 rounded-lg text-sm font-sans transition-colors hover:bg-primary/10 hover:text-primary ${
-                  activeSection === item.href.substring(1) ? 'text-primary bg-primary/10' : 'text-muted-foreground'
+                href={item.href}
+                onClick={() => setIsMenuOpen(false)}
+                className={`block py-3 px-3 rounded-lg text-base font-sans transition-colors hover:bg-primary/10 hover:text-highlight ${
+                  activeSection === item.href.substring(1) ? 'text-highlight bg-primary/10' : 'text-foreground'
                 }`}
               >
                 {item.name}
-              </button>
+              </a>
             ))}
           </div>
-        </motion.div>
-      </motion.nav>
+        )}
+      </nav>
 
       {/* Main Content */}
       <main>
-        <div id="home"><HeroSection /></div>
-        <div id="about" className="pt-20"><AboutSection /></div>
-        <div id="experience" className="pt-20"><ExperienceSection /></div>
-        <div id="projects" className="pt-20"><ProjectsSection /></div>
-        <div id="skills" className="pt-20"><SkillsSection /></div>
-        <div id="contact" className="pt-20"><ContactSection /></div>
+        <HeroSection />
+        <ProjectsSection />
+        <AboutSection />
+        <ExperienceSection />
+        <SkillsSection />
+        <ContactSection />
       </main>
 
       {/* Footer */}
-      <footer className="bg-muted/20 border-t border-border py-12">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center">
-            <div className="flex items-center justify-center space-x-2 mb-4">
-              <div className="w-8 h-8 bg-primary rounded-md flex items-center justify-center">
-                <span className="text-primary-foreground font-bold font-mono">P</span>
-              </div>
-              <span className="font-sans font-bold gradient-text text-xl">Paola G.</span>
-            </div>
-            <p className="text-muted-foreground mb-4 font-mono text-sm">
-              Built with Next.js, React, Tailwind CSS, and Framer Motion
-            </p>
-            <div className="flex justify-center space-x-6 text-sm text-muted-foreground">
-              <a href="https://github.com/paolacodes1" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">GitHub</a>
-              <span>•</span>
-              <a href="https://www.linkedin.com/in/paolagisler" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">LinkedIn</a>
-            </div>
-            <div className="mt-8 pt-8 border-t border-border text-xs text-muted-foreground font-mono">
-              <p>© 2024 Paola G. All rights reserved.</p>
-              <p className="mt-1">
-                <span className="text-primary">$</span> echo &quot;Always learning, always building&quot;{' '}
-                <span className="animate-blink text-primary">|</span>
-              </p>
-            </div>
+      <footer className="border-t border-border py-10 px-4">
+        <div className="max-w-5xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-sm text-muted-foreground">
+          <p>© {new Date().getFullYear()} Paola Gisler</p>
+          <p className="font-mono">
+            <span className="text-highlight">$</span> echo &quot;Always learning, always building&quot;
+          </p>
+          <div className="flex gap-6">
+            <a href="https://github.com/paolacodes1" target="_blank" rel="noopener noreferrer" className="hover:text-highlight transition-colors">GitHub</a>
+            <a href="https://www.linkedin.com/in/paolagisler" target="_blank" rel="noopener noreferrer" className="hover:text-highlight transition-colors">LinkedIn</a>
           </div>
         </div>
       </footer>
@@ -177,29 +153,10 @@ export default function HomePage() {
         transition={{ duration: 0.3 }}
         className="fixed bottom-8 right-8 z-30"
       >
-        <Button onClick={scrollToTop} size="icon" className="rounded-full shadow-lg hover:shadow-xl transition-all duration-300">
+        <Button onClick={scrollToTop} size="icon" aria-label="Back to top" className="rounded-full shadow-lg hover:shadow-xl transition-all duration-300">
           <ChevronUp className="w-5 h-5" />
         </Button>
       </motion.div>
-
-      {/* Background Effects — warm orange orbs */}
-      <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/3 left-1/5 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/3 right-1/5 w-96 h-96 bg-amber-600/4 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '3s' }} />
-        <div className="absolute top-2/3 left-2/3 w-64 h-64 bg-orange-700/3 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '6s' }} />
-
-        {/* Warm grid */}
-        <div
-          className="absolute inset-0 opacity-[0.015]"
-          style={{
-            backgroundImage: `
-              linear-gradient(rgba(196, 90, 26, 0.08) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(196, 90, 26, 0.08) 1px, transparent 1px)
-            `,
-            backgroundSize: '60px 60px'
-          }}
-        />
-      </div>
     </div>
   )
 }

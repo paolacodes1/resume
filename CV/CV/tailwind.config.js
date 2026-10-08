@@ -50,12 +50,14 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        // Light copper for accent text; keep primary (#c45a1a) for fills
+        highlight: "hsl(var(--highlight))",
         // Terminal palette — warm copper/amber
         terminal: {
           bg:     "#1a1410",  // warm dark surface
           border: "#3a2a1a",  // warm dark border
-          text:   "#8a7a65",  // warm muted text
-          green:  "#c45a1a",  // copper — prompt color
+          text:   "#b3a28a",  // warm muted text
+          green:  "#e8853f",  // light copper — prompt color
           yellow: "#e08020",  // amber — output/accent
           blue:   "#c45a1a",  // unified to copper
           red:    "#c45a1a",  // unified to copper
@@ -101,6 +103,7 @@ module.exports = {
         glow: "glow 2s ease-in-out infinite alternate",
       },
       fontFamily: {
+        sans: ['var(--font-inter)', 'Inter', 'system-ui', 'sans-serif'],
         mono: ['JetBrains Mono', 'Fira Code', 'Consolas', 'Monaco', 'monospace'],
       },
     },

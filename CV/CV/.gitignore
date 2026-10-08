@@ -44,6 +44,8 @@ Thumbs.db
 *.png
 *.jpg
 *.jpeg
+# ...but site assets in public/ (og.png, screenshots, photo) must be committed
+!public/**
 
 # Private documentation - DO NOT UPLOAD
 ../../PRIVATE_PROJECT_NOTES.md
