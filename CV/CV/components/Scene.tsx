@@ -13,6 +13,8 @@ export interface SceneProps {
   image?: string
   imageAlt?: string
   flip?: boolean
+  inProductionLabel: string
+  crewLabel: string
 }
 
 // Stand-in shown until a scene has a real image: a film frame with the scene number
@@ -42,6 +44,8 @@ export default function Scene({
   image,
   imageAlt,
   flip,
+  inProductionLabel,
+  crewLabel,
 }: SceneProps) {
   const text = (
     <div className="flex-[1_1_420px] min-w-0">
@@ -49,7 +53,7 @@ export default function Scene({
         <span className="text-accent">SC. {number}</span>
         <span>{slugline}</span>
         {inProduction && (
-          <span className="text-accent-ink bg-accent px-2 rounded-sm">IN PRODUCTION</span>
+          <span className="text-accent-ink bg-accent px-2 rounded-sm">{inProductionLabel}</span>
         )}
       </div>
       <h3 className="mt-[14px] mb-4 font-display font-extrabold uppercase text-[clamp(36px,4vw,52px)] leading-[0.95]">
@@ -63,7 +67,7 @@ export default function Scene({
           ))}
         </ul>
       )}
-      <p className="mt-5 font-mono text-[13px] leading-[1.7] text-muted">CREW: {crew}</p>
+      <p className="mt-5 font-mono text-[13px] leading-[1.7] text-muted">{crewLabel}: {crew}</p>
     </div>
   )
 
