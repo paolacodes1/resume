@@ -155,6 +155,23 @@ const pt: SiteContent = {
     byline: 'Escrito, dirigido e construído por Paola Gisler',
     languages: 'Português · Inglês · um pouco de espanhol',
   },
+  callSheet: {
+    title: 'Paola Gisler — ordem do dia',
+    name: 'Paola Gisler',
+    headline: 'Builder',
+    tagline: 'Sistemas, automações e agentes de IA. Malásia ↔ Brasil.',
+    navLabel: 'Contato',
+    save: 'Salvar meu contato',
+    whatsapp: 'Me chama no WhatsApp',
+    whatsappMessage: 'Oi Paola, a gente acabou de se conhecer!',
+    linkedin: 'LinkedIn',
+    email: 'E-mail',
+    work: 'Ver meu trabalho',
+    workHint: 'site completo',
+    footerDay: 'Dia 1 de 1',
+    switchLabel: 'EN',
+    switchName: 'English',
+  },
 }
 
 export default pt

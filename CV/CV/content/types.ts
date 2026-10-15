@@ -49,4 +49,22 @@ export interface SiteContent {
     labels: { email: string; whatsapp: string; linkedin: string; github: string }
   }
   credits: { byline: string; languages: string }
+  callSheet: {
+    title: string
+    name: string
+    headline: string
+    tagline: string
+    navLabel: string
+    save: string
+    whatsapp: string
+    whatsappMessage: string
+    linkedin: string
+    email: string
+    work: string
+    workHint: string
+    footerDay: string
+    // Link to the other language version of the call sheet
+    switchLabel: string
+    switchName: string
+  }
 }

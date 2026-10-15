@@ -154,6 +154,23 @@ const en: SiteContent = {
     byline: 'Written, directed and built by Paola Gisler',
     languages: 'Portuguese · English · some Spanish',
   },
+  callSheet: {
+    title: 'Paola Gisler — call sheet',
+    name: 'Paola Gisler',
+    headline: 'Builder',
+    tagline: 'Systems, automations and AI agents. Malaysia ↔ Brazil.',
+    navLabel: 'Contact',
+    save: 'Save my contact',
+    whatsapp: 'WhatsApp me',
+    whatsappMessage: 'Hi Paola, we just met!',
+    linkedin: 'LinkedIn',
+    email: 'Email',
+    work: 'See my work',
+    workHint: 'full site',
+    footerDay: 'Day 1 of 1',
+    switchLabel: 'PT',
+    switchName: 'Português',
+  },
 }
 
 export default en
