@@ -74,12 +74,16 @@ export default function Scene({
   const media = (
     <div className="flex-[1_1_420px] min-w-0">
       {image ? (
-        <img
-          src={withBasePath(`/scenes/${image}`)}
-          alt={imageAlt ?? ''}
-          loading="lazy"
-          className="w-full aspect-[16/10] object-cover bg-surface"
-        />
+        <div className="bg-film py-3 rounded">
+          <div className="sprockets mx-[10px]" />
+          <img
+            src={withBasePath(`/scenes/${image}`)}
+            alt={imageAlt ?? ''}
+            loading="lazy"
+            className="block mx-[14px] my-[10px] w-[calc(100%-28px)] aspect-[16/10] object-cover bg-surface"
+          />
+          <div className="sprockets mx-[10px]" />
+        </div>
       ) : (
         <SceneSlate number={number} slugline={slugline} />
       )}
